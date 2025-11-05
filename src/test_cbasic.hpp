@@ -8,6 +8,44 @@
 #include <algorithm>
 #include <cstring>
 
+const double g_eps = 1e-8;
+const double g_pi = acos(-1.0);
+
+struct StudentInfo {
+  int id;
+  char gender;
+  char name[20];
+  char major[20];
+  StudentInfo() {};
+  StudentInfo(const int _id, const char _gender, const char _name[],const char _major[]) {
+    id = _id;
+    gender = _gender;
+    strcpy(name, _name);
+    strcpy(major, _major);
+  }
+}Alice, Bob, stu[1000];
+
+
+bool isFloatEqual(const float a, const float b) {
+  return abs(a - b) < g_eps;
+}
+
+bool isFloatMore(const float a, const float b) {
+  return a - b > g_eps;
+}
+
+bool isFloatMoreEqu(const float a, const float b) {
+  return a - b > -g_eps;
+}
+
+bool isFloatLess(const float a, const float b) {
+  return a - b < - g_eps;
+}
+
+bool isFloatLessEqu(const float a, const float b) {
+  return a - b < g_eps;
+}
+
 
 int test_io() {
   // scanf:  %d, %lld, %f, %lf, %c, %s
@@ -102,6 +140,7 @@ int test_math() {
   // acos(double x);
   // atan(double x);
   // round(double x);
+  printf("g_pi: %.10f\n", g_pi);
   return 0;
 }
 
@@ -216,4 +255,44 @@ int test_func_recursive() {
   int res = fibonacci(n);
   printf("%d\n%d\n", n, res);
   return 0;
+}
+
+int test_struct() {
+  Alice = { 5, 'F', "Alice", "Math" };
+  Bob = { 1, 'M', "Bob", "English" };
+  StudentInfo Jack(2, 'M', "Jack", "Physics");
+  stu[0] = Alice;
+  stu[1] = Bob;
+  stu[2] = Jack;
+  for (int i = 0; i < 4; ++i) {
+    printf("%d, %c, %s, %s\n", stu[i].id, stu[i].gender, stu[i].name, stu[i].major);
+  }
+  return 0;
+}
+
+int test_cmp_float() {
+  float a = 0.3, b = 0.3;
+  printf("%d, %d\n", a == b, isFloatEqual(a, b));
+  // after complex calculation, == becomes unreliable
+  double db1 = 4 * asin(sqrt(2.0) / 2);
+  double db2 = 3 * asin(sqrt(3.0) / 2);
+  printf("%d, %d\n", db1 == db2, isFloatEqual(db1, db2));
+  return 0;
+}
+
+
+int test_cbasic() {
+  //return test_io();
+  //return test_io_char();
+  //return test_variale();
+  //return test_var_trans();
+  //return test_var_bitop();
+  return test_math();
+  //return test_array();
+  //return test_sort_bubble();
+  //return test_memset();
+  //return test_func_array();
+  //return test_func_recursive();
+  //return test_struct();
+  //return test_cmp_float();
 }
