@@ -16,6 +16,16 @@ struct testee {
   int score;
   int local_rank;
   int final_rank;
+
+  bool operator < (const testee& b) const {
+    if (score != b.score) {
+      return score > b.score;
+    }
+    else {
+      return id < b.id;
+    }
+  }
+
 } g_testList [30005];
 
 bool cmp(const testee &a, const testee &b) {
@@ -45,7 +55,8 @@ int main() {
     }
 
     // sort each location
-    std::sort(g_testList + jbase, g_testList + jbase + K, cmp);
+    std::sort(g_testList + jbase, g_testList + jbase + K);
+    //std::sort(g_testList + jbase, g_testList + jbase + K, cmp);
 
     // indexing each location rank
     int loc_rank = 1;
