@@ -11,6 +11,8 @@ add_subdirectory(src/a1025)
 
 add_subdirectory(src/b1001)
 add_subdirectory(src/b1009)
+add_subdirectory(src/b1020)
 add_subdirectory(src/b1022)
+add_subdirectory(src/b1023)
 add_subdirectory(src/b1032)
 add_subdirectory(src/b1036)
