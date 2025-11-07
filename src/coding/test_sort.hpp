@@ -63,7 +63,6 @@ void sort_merge_recursive(int nums[], const int start, const int end) {
 	}
 }
 
-
 void sort_merge_nonrecursive(int nums[], const int len) {
 	int merge_size = 2;
 	while (merge_size / 2 < len) {
@@ -128,7 +127,80 @@ int test_sort_merge() {
 	return 0;
 }
 
+void sort_fast_recursive(int nums[], const int start, const int end) {
+	if (start >= end) {
+		return;
+	}
+	else {
+		int val = nums[start];
+		//printf("val: %d, start: %d, end: %d\n", val, start, end);
+		//for (int k = start; k <= end; ++k) {
+		//	printf("%d ", nums[k]);
+		//}
+		//printf("\n");
+
+		
+		//// using tempNums
+		//int len = end - start + 1;
+		//std::vector<int> tempNums(len);
+		//int i = 0;
+		//int j = len - 1;
+		//for (int k = start + 1; k <= end; ++k) {
+		//	if (nums[k] < val) {
+		//		tempNums[i++] = nums[k];
+		//	}
+		//	else {
+		//		tempNums[j--] = nums[k];
+		//	}
+		//}
+		//tempNums[i] = val;
+		//for (int k = 0; k < len; ++k) {
+		//	nums[start + k] = tempNums[k];
+		//}
+
+		// using two pointers
+		int i = start;
+		int j = end;
+		while (i < j) {
+			//printf("i: %d, j: %d\n", i, j);
+			while (i < j && nums[j] >= val) {
+				--j;
+			}
+			nums[i] = nums[j];
+			while (i < j && nums[i] < val) {
+				++i;
+			}
+			nums[j] = nums[i];
+		}
+		nums[i] = val;
+
+		//for (int k = start; k <= end; ++k) {
+		//	printf("%d ", nums[k]);
+		//}
+		//printf("\n");
+		//printf("i: %d\n", i);
+
+		sort_fast_recursive(nums, start, i - 1);
+		sort_fast_recursive(nums, i + 1, end);
+	}
+}
+
+
+int test_sort_fast() {
+	printf("test_sort_fast\n");
+
+	int nums[7] = { 66, 12, 33, 57, 64, 27, 18 };
+	sort_fast_recursive(nums, 0, 6);
+	for (int i = 0; i < 7; ++i) {
+		printf("%d ", nums[i]);
+	}
+	printf("\n");
+	return 0;
+}
+
+
 
 int test_sort() {
-  return test_sort_merge();
+  //return test_sort_merge();
+	return test_sort_fast();
 }
