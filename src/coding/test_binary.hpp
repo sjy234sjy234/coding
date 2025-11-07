@@ -35,6 +35,22 @@ int test_binary_func() {
   return 0;
 }
 
+
+long long binary_fastpow_recursive(const int a, const int b, const int m) {
+  if (b == 0) {
+    return 1;
+  }
+  else if (b == 1) {
+    return a % m;
+  }
+  else if (b % 2) {
+    return binary_fastpow_recursive(a, b - 1, m) * binary_fastpow_recursive(a, 1, m) % m;
+  }
+  else {
+    return binary_fastpow_recursive(a, b / 2, m) * binary_fastpow_recursive(a, b / 2, m) % m;
+  }
+}
+
 int test_binary_fastpow() {
 
   //// bruteforce (a < 1e9, b < 1e6, 1 < m < 1e9)
@@ -46,37 +62,44 @@ int test_binary_fastpow() {
   //}
   //printf("%lld %lld %lld %lld\n", a, b, m, res);
 
-  // binary (a < 1e9, b < 1e18, 1 < m < 1e9)
+  //// binary (a < 1e9, b < 1e18, 1 < m < 1e9)
+  //long long a, b, m;
+  //long long res = 1;
+  //scanf("%lld %lld %lld", &a, &b, &m);
+  //std::vector<std::pair<long long, long long>> binaryRecord;  // pair<cnt, val>
+  //long long iterB = b;
+  //while (iterB > 0) {
+  //  // get val
+  //  int val;
+  //  if (binaryRecord.empty()) {
+  //    val = a % m;
+  //  }
+  //  else {
+  //    val = binaryRecord.back().second * binaryRecord.back().second;
+  //  }
+  //  // set cnt & val
+  //  if (iterB % 2) {
+  //    binaryRecord.push_back({ 1, val });
+  //  }
+  //  else {
+  //    binaryRecord.push_back({ 0, val });
+  //  }
+  //  // iter
+  //  iterB >>= 1;
+  //}
+  //// get mod
+  //for (int i = 0; i < binaryRecord.size(); ++i) {
+  //  if (binaryRecord[i].first) {
+  //    res = res * binaryRecord[i].second % m;
+  //  }
+  //}
+  //printf("%lld %lld %lld %lld\n", a, b, m, res);
+
+  // binary recursive (a < 1e9, b < 1e18, 1 < m < 1e9)
   long long a, b, m;
   long long res = 1;
   scanf("%lld %lld %lld", &a, &b, &m);
-  std::vector<std::pair<long long, long long>> binaryRecord;  // pair<cnt, val>
-  long long iterB = b;
-  while (iterB > 0) {
-    // get val
-    int val;
-    if (binaryRecord.empty()) {
-      val = a % m;
-    }
-    else {
-      val = binaryRecord.back().second * binaryRecord.back().second;
-    }
-    // set cnt & val
-    if (iterB % 2) {
-      binaryRecord.push_back({ 1, val });
-    }
-    else {
-      binaryRecord.push_back({ 0, val });
-    }
-    // iter
-    iterB >>= 1;
-  }
-  // get mod
-  for (int i = 0; i < binaryRecord.size(); ++i) {
-    if (binaryRecord[i].first) {
-      res = res * binaryRecord[i].second % m;
-    }
-  }
+  res = binary_fastpow_recursive(a, b, m);
   printf("%lld %lld %lld %lld\n", a, b, m, res);
 
   return 0;
