@@ -5,13 +5,15 @@
 #include "./test_binary.hpp"
 #include "./test_2pointers.hpp"
 #include "./test_sort.hpp"
+#include "./test_gcd.hpp"
 #include <iostream>
 using namespace std;
 
 int main() {
-  //test_cbasic();
-  //test_oj_io();
-  //test_binary();
-  //test_2pointers();
-	test_sort();
+  //return test_cbasic();
+  //return test_oj_io();
+  //return test_binary();
+  //return test_2pointers();
+  //return test_sort();
+	return test_gcd();
 }
