@@ -5,7 +5,7 @@
 #include "./test_binary.hpp"
 #include "./test_2pointers.hpp"
 #include "./test_sort.hpp"
-#include "./test_gcd.hpp"
+#include "./test_num.hpp"
 #include <iostream>
 using namespace std;
 
@@ -15,5 +15,5 @@ int main() {
   //return test_binary();
   //return test_2pointers();
   //return test_sort();
-	return test_gcd();
+	return test_num();
 }
