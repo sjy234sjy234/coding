@@ -9,6 +9,7 @@ add_subdirectory(src/coding)
 
 add_subdirectory(src/a1025)
 add_subdirectory(src/a1059)
+add_subdirectory(src/a1060)
 
 add_subdirectory(src/b1001)
 add_subdirectory(src/b1009)
