@@ -6,6 +6,7 @@
 #include "./test_2pointers.hpp"
 #include "./test_sort.hpp"
 #include "./test_num.hpp"
+#include "./test_pqueue.hpp"
 #include <iostream>
 using namespace std;
 
@@ -15,5 +16,6 @@ int main() {
   //return test_binary();
   //return test_2pointers();
   //return test_sort();
-	return test_num();
+	//return test_num();
+  return test_pqueue();
 }
