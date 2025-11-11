@@ -69,9 +69,35 @@ int test_algorithm_sort() {
 	return 0;
 }
 
+int test_algorithm_bound() {
+	// the array must be non-descending
+	vector<int> v = { 1, 3, 3, 5, 7 };
+
+	// lower_bound: locate first no less than val
+	auto lbound = lower_bound(v.begin(), v.end(), 2);
+	//auto lbound = lower_bound(v.begin(), v.end(), 3);
+	//auto lbound = lower_bound(v.begin(), v.end(), 9);
+	int lbound_pos = -1;
+	if (lbound != v.end()) {
+		lbound_pos = lbound - v.begin();
+	}
+	printf("lbound_pos: %d\n", lbound_pos);
+
+	// upper_bound: locate first one greater than val
+	auto ubound = upper_bound(v.begin(), v.end(), 3);
+	int ubound_pos = -1;
+	if (ubound != v.end()) {
+		ubound_pos = ubound - v.begin();
+	}
+	printf("ubound_pos: %d\n", ubound_pos);
+
+	return 0;
+}
+
 
 int test_algorithm() {
 	//return test_algorithm_reverse();
 	//return test_algorithm_npermute();
-	return test_algorithm_sort();
+	//return test_algorithm_sort();
+	return test_algorithm_bound();
 }
