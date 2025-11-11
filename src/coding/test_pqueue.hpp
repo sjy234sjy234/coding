@@ -32,6 +32,15 @@ struct fruit {
 };
 
 
+struct cmp {
+	bool operator () (const fruit& a, const fruit& b) {
+		//return a.price < b.price;
+		return a.price > b.price;
+	}
+};
+
+
+
 int test_pqueue_int() {
 	//std::priority_queue<int> pqueue;
 	//std::priority_queue<int, vector<int>, less<int>> pqueue;
@@ -54,7 +63,8 @@ int test_pqueue_struct() {
 
 	//std::priority_queue<fruit> pqueue;
 	//std::priority_queue<fruit, vector<fruit>, less<fruit>> pqueue;
-	std::priority_queue<fruit, vector<fruit>, greater<fruit>> pqueue;
+	//std::priority_queue<fruit, vector<fruit>, greater<fruit>> pqueue;
+	std::priority_queue<fruit, vector<fruit>, cmp> pqueue;
 
 	pqueue.push({ "00", 1 });
 	pqueue.push({ "01", 4 });
