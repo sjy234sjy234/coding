@@ -8,6 +8,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fopenmp")
 add_subdirectory(src/coding)
 
 add_subdirectory(src/a1025)
+add_subdirectory(src/a1032)
+add_subdirectory(src/a1052)
 add_subdirectory(src/a1059)
 add_subdirectory(src/a1060)
 
